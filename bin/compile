@@ -141,7 +141,7 @@ if [ "$GIT_SSH_KEY" != "" ]; then
   # launch ssh-agent, we'll use it to serve our ssh key
   # and kill it towards the end of the buildpack's run
   eval `ssh-agent -s`
-  
+
   # ssh-add doesn't like the default 644
   chmod 600 id_rsa
   # We're not supporting passphrases at this time.  We could pull that in
@@ -209,7 +209,7 @@ if test -f $build_dir/hooks/before_hook.sh; then
 fi
 
 status "Building Ember CLI application $build_env distribution"
-node_modules/ember-cli/bin/ember build --environment $build_env | indent
+node_modules/ember-cli/bin/ember deploy --environment $build_env | indent
 
 if test -f $build_dir/hooks/after_hook.sh; then
   status "After hook detected. Running..."
