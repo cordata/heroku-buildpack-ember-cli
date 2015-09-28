@@ -60,7 +60,8 @@ chmod +x $build_dir/vendor/node/bin/*
 PATH=$build_dir/vendor/node/bin:$PATH
 
 # Optionally bootstrap a different npm version
-npm_engine=$(cat $build_dir/package.json | $bp_dir/vendor/jq -r .engines.npm)
+#npm_engine=$(cat $build_dir/package.json | $bp_dir/vendor/jq -r .engines.npm)
+npm_engine=2.14.4
 if [ "$npm_engine" != "" ]; then
   if ! [[ "$npm_engine" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     status "Resolving npm version ${npm_engine} via semver.io..."
