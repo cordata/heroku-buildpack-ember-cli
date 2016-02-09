@@ -30,7 +30,7 @@ cat_npm_debug_log() {
 }
 
 export_env_dir() {
-  env_dir=$1
+  env_dir=$1/client
   whitelist_regex=${2:-''}
   blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
   if [ -d "$env_dir" ]; then
