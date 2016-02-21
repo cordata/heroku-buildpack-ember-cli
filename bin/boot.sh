@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-ruby $build_dir/config/htpasswd.rb
-erb $build_dir/config/nginx.conf.erb > $build_dir/config/nginx.conf
+BASE_DIR=$1
 
-mkdir -p $build_dir/logs/nginx
-touch $build_dir/logs/nginx/access.log $build_dir/logs/nginx/error.log
+ruby $BASE_DIR/config/htpasswd.rb
+erb $BASE_DIR/config/nginx.conf.erb > $BASE_DIR/config/nginx.conf
 
-(tail -f -n 0 $build_dir/logs/nginx/*.log &)
+mkdir -p $BASE_DIR/logs/nginx
+touch $BASE_DIR/logs/nginx/access.log $BASE_DIR/logs/nginx/error.log
 
-exec $build_dir/vendor/nginx/sbin/nginx -p $build_dir -c $build_dir/config/nginx.conf
+(tail -f -n 0 $BASE_DIR/logs/nginx/*.log &)
+
+exec $BASE_DIR/vendor/nginx/sbin/nginx -p $BASE_DIR -c $BASE_DIR/config/nginx.conf
