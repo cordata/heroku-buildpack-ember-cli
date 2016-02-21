@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-ruby $HOME/config/htpasswd.rb
-erb $HOME/config/nginx.conf.erb > $HOME/config/nginx.conf
+ruby $build_dir/config/htpasswd.rb
+erb $build_dir/config/nginx.conf.erb > $build_dir/config/nginx.conf
 
-mkdir -p $HOME/logs/nginx
-touch $HOME/logs/nginx/access.log $HOME/logs/nginx/error.log
+mkdir -p $build_dir/logs/nginx
+touch $build_dir/logs/nginx/access.log $build_dir/logs/nginx/error.log
 
-(tail -f -n 0 $HOME/logs/nginx/*.log &)
+(tail -f -n 0 $build_dir/logs/nginx/*.log &)
 
-exec $HOME/vendor/nginx/sbin/nginx -p $HOME -c $HOME/config/nginx.conf
+exec $build_dir/vendor/nginx/sbin/nginx -p $build_dir -c $build_dir/config/nginx.conf
